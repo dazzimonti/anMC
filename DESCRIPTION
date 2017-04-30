@@ -1,0 +1,21 @@
+Package: anMC
+Type: Package
+Title: Compute high dimensional orthant probabilities
+Version: 0.1.0
+Author: Dario Azzimonti
+Date: 30-04-2017
+Maintainer: Dario Azzimonti <dario.azzimonti@gmail.com>
+Description: Computationally efficient method to estimate orthant probabilities
+    of high-dimensional Gaussian vectors. This method is used in the function conservativeEstimates to compute conservative estimates of excursion sets under Gaussian random field priors. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: TRUE
+Depends:
+    mvtnorm
+Imports:
+    microbenchmark,
+    Rcpp (>= 0.11.1)
+Suggests:
+    DiceKriging
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.0.1
