@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-# GanMC
+# anMC
 
-`GanMC` is a R package to efficiently compute orthant probabilities of high-dimensional Gaussian vectors. The method is applied to compute conservative estimates of excursion sets of functions under Gaussian random field priors. This is an upgrade on the previously existent package [ConservativeEstimates][consEst-reference]. See the paper [Azzimonti, D. and Ginsbourger D. (2016)][article-reference] for more details.
+`anMC` is a R package to efficiently compute orthant probabilities of high-dimensional Gaussian vectors. The method is applied to compute conservative estimates of excursion sets of functions under Gaussian random field priors. This is an upgrade on the previously existent package [ConservativeEstimates][consEst-reference]. See the paper [Azzimonti, D. and Ginsbourger D. (2016)][article-reference] for more details.
 
 ### Features
 
@@ -35,7 +35,7 @@ To install the package run the following code from a R console:
 ```{r,echo=TRUE,eval=FALSE}
 if (!require("devtools"))
   install.packages("devtools")
-devtools::install_github("dazzimonti/GanMC")
+devtools::install_github("dazzimonti/anMC")
 ```
 
 
