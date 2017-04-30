@@ -25,6 +25,13 @@
 #' \item 5  samples with uniform probabilities.
 #' }
 #' @param verb level of verbosity: 0 returns nothing, 1 returns minimal info
+#' @param pmvnorm_usr function to compute core probability on active dimensions. Inputs: \itemize{
+#' \item \code{lower:} the vector of lower limits of length \code{d}.
+#' \item \code{upper:} the vector of upper limits of length \code{d}.
+#' \item \code{mean:} the mean vector of length \code{d}.
+#' \item \code{sigma:} the covariance matrix of dimension \code{d}.
+#' }
+#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{pmvnorm} from the package \code{mvtnorm}.
 #' @return A vector of integers denoting the chosen active dimensions of the vector mu.
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 #'
@@ -32,14 +39,14 @@
 #'
 #' Genz, A. (1992). Numerical computation of multivariate normal probabilities. Journal of Computational and Graphical Statistics, 1(2):141--149.
 #' @export
-selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0){
+selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0,pmvnorm_usr=pmvnorm){
   n<-length(mu)
 
   # If q is NULL we don't know how many q to select thus we use the sequential procedure
   if(is.null(q)){
-    return(selectQdims(E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,reducedReturn=T,verb=verb))
+    return(selectQdims(E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,reducedReturn=T,verb=verb,pmvnorm_usr=pmvnorm_usr))
   }else if(length(q)==2){ # here we pass the vector of limits instead of a fixed q
-    return(selectQdims(E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,reducedReturn=T,verb=verb,limits = q))
+    return(selectQdims(E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,reducedReturn=T,verb=verb,limits = q, pmvnorm_usr=pmvnorm_usr))
   }
 
   if(method==0){
@@ -133,6 +140,13 @@ selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0)
 #' @param reducedReturn boolean to select the type of return. See Value for further details.
 #' @param verb level of verbosity: 0 returns nothing, 1 returns minimal info.
 #' @param limits numeric vector of length 2 with q_min and q_max. If \code{NULL} initialized at c(10,300)
+#' @param pmvnorm_usr function to compute core probability on active dimensions. Inputs: \itemize{
+#' \item \code{lower:} the vector of lower limits of length \code{d}.
+#' \item \code{upper:} the vector of upper limits of length \code{d}.
+#' \item \code{mean:} the mean vector of length \code{d}.
+#' \item \code{sigma:} the covariance matrix of dimension \code{d}.
+#' }
+#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{pmvnorm} from the package \code{mvtnorm}.
 #' @return If \code{reducedReturn=F} returns a list containing
 #' \itemize{
 #'    \item{\code{indQ}: }{the indices of the active dimensions chosen for \eqn{p_q};}
@@ -149,7 +163,7 @@ selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0)
 #'
 #' Genz, A. (1992). Numerical computation of multivariate normal probabilities. Journal of Computational and Graphical Statistics, 1(2):141--149.
 #' @export
-selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,verb=0,limits=NULL){
+selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,verb=0,limits=NULL,pmvnorm_usr=pmvnorm){
   if(verb>0)
     cat("\n selectQdims: find good q and select active dimensions \n")
   n<-length(mu)
@@ -163,14 +177,14 @@ selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,ver
   if(verb>0)
     cat("\n Initial q:",q0)
   # compute the first pPrime
-  indQ<-selectActiveDims(q=q0,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method)
+  indQ<-selectActiveDims(q=q0,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,pmvnorm_usr=pmvnorm_usr)
   Eq<-E[indQ,]
   # compute muEq
   muEq<-mu[indQ]
   # compute k(Eq,Eq)
   KEq<-Sigma[indQ,indQ]
   # Compute p_q
-  pPrime<- 1 - pmvnorm(upper = threshold,mean = muEq,sigma = KEq)
+  pPrime<- 1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq)
   err<-attr(pPrime,"error")
   deltaP<-1
   # q increment
@@ -181,14 +195,14 @@ selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,ver
   q=q0
   while(flag<2){
     q<-min(q+qIncrement,qMax)
-    indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method)
+    indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=pn,method=method,pmvnorm_usr=pmvnorm_usr)
     Eq<-E[indQ,]
     # compute muEq
     muEq<-mu[indQ]
     # compute k(Eq,Eq)
     KEq<-Sigma[indQ,indQ]
     # Compute p_q
-    temp<-1 - pmvnorm(upper = threshold,mean = muEq,sigma = KEq,algorithm = GenzBretz(abseps = 0.01))
+    temp<-1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq,algorithm = GenzBretz(abseps = 0.01))
 #    pPrime<-c(pPrime,temp)
     err<-attr(temp,"error")
     deltaP<-abs(temp-pPrime)/(temp+1)
@@ -203,7 +217,7 @@ selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,ver
 
   res<-indQ
   if(!reducedReturn){
-    pq<-1 - pmvnorm(upper = threshold,mean = muEq,sigma = KEq)
+    pq<-1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq)
     attr(pq,"error")<-attr(temp,"error")
     res<-list(indQ=indQ,pq=pq,Eq=Eq,muEq=muEq,KEq=KEq)
   }

@@ -27,6 +27,13 @@
 #'        \item \code{verb}: the level of verbosity 3 basic, 4 extended
 #' }
 #' and it must return a matrix \eqn{d x n} of realizations. If not specified, the rejection sampler \code{trmvrnorm_rej_cpp} is used.
+#' @param pmvnorm_usr function to compute core probability on active dimensions. Inputs: \itemize{
+#' \item \code{lower:} the vector of lower limits of length \code{d}.
+#' \item \code{upper:} the vector of upper limits of length \code{d}.
+#' \item \code{mean:} the mean vector of length \code{d}.
+#' \item \code{sigma:} the covariance matrix of dimension \code{d}.
+#' }
+#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{pmvnorm} from the package \code{mvtnorm}.
 #' @return A list containing
 #' \itemize{
 #'    \item{\code{probability}: }{The probability estimate}
@@ -51,7 +58,7 @@
 #'
 #' Genz, A. (1992). Numerical computation of multivariate normal probabilities. Journal of Computational and Graphical Statistics, 1(2):141--149.
 #' @export
-ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,method=4,verb=0,Algo="ANMC",trmvrnorm = trmvrnorm_rej_cpp){
+ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,method=4,verb=0,Algo="ANMC",trmvrnorm = trmvrnorm_rej_cpp,pmvnorm_usr=pmvnorm){
 
   # initialize parameters
   n<-length(mu)
@@ -68,7 +75,7 @@ ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
 
   # Select q and the active dimensions (if q is a number we select q active dims)
   # [pn = P(x in Gamma), interesting points here have high prob of not being in Gamma]
-  indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=(1-pn),method=method)
+  indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=(1-pn),method=method,pmvnorm_usr=pmvnorm_usr)
 
   # if q was given as a range here we reinitialize it as the number of active dims
   q<-length(indQ)
@@ -87,7 +94,7 @@ ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
 
   while(attr(chol(KEq,pivot=T),"rank")!=q){
     # ReSelect the appropriate q points
-    indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=(1-pn),method=method)
+    indQ<-selectActiveDims(q=q,E=E,threshold=threshold,mu=mu,Sigma=Sigma,pn=(1-pn),method=method,pmvnorm_usr=pmvnorm_usr)
     #  Eq<-E[indQ]
     Eq<-E[indQ,]
     # compute muEq
@@ -102,7 +109,7 @@ ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
   cholKeq<-chol(KEq)
 
   # Compute p'
-  pPrime<- 1 - pmvnorm(upper = threshold,mean = muEq,sigma = KEq)
+  pPrime<- 1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq)
   #  sSize<-N
   if(verb>=1){
     cat("Computed pPrime = ",pPrime,"\n")
