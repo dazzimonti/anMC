@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 The package main functions are:
 
-* `ProbaMax`: the main function for high dimensional othant probabilities. Computes _P(max X > t)_, where _X_ is a Gaussian vector and _t_ is the selected threshold. The function computes the probability with the decomposition explained [here][article-reference]. It implements both the `GMC` and `GANMC` algorithms. 
+* `ProbaMax`: the main function for high dimensional othant probabilities. Computes _P(max X > t)_, where _X_ is a Gaussian vector and _t_ is the selected threshold. The function computes the probability with the decomposition explained [here][article-reference]. It implements both the `GMC` and `GANMC` algorithms. It allows user-defined functions for the core probability estimate (defaults to `pmvnorm` of the package `mvtnorm`) and the truncated normal sampler (defaults to `trmvrnorm_rej_cpp`) required in the method.
 
 * `ProbaMin`: analogous of `ProbaMax` but used to compute _P(min X < t)_, where _X_ is a Gaussian vector and _t_ is the selected threshold. This function computes the probability with the decomposition explained [here][article-reference]. It implements both the `GMC` and `GANMC` algorithms.
 
@@ -30,7 +30,7 @@ The package main functions are:
 
 ### Installation
 
-To install the package run the following code from a R console:
+To install the latest version of the package run the following code from a R console:
 
 ```{r,echo=TRUE,eval=FALSE}
 if (!require("devtools"))
@@ -43,6 +43,9 @@ devtools::install_github("dazzimonti/anMC")
 
 Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at [hal-01289126][article-reference]
 
+Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. Available at [link][thesis-reference]
+
 
 [article-reference]: https://hal.archives-ouvertes.fr/hal-01289126
 [consEst-reference]: https://github.com/dazzimonti/ConservativeEstimates
+[thesis-reference]: http://www.zb.unibe.ch/download/eldiss/16azzimonti_d.pdf

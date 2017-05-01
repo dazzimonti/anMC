@@ -10,12 +10,12 @@
 #'
 #' @description The function \code{selectActiveDims} selects the active dimensions for the computation of \eqn{p_q} with an heuristic method.
 #'
-#' @param q either the fixed number of active dimensions or the range where the number of active dimensions is chosen with \code{selectQdims}. If \code{NULL} the function \code{selectQdims} is called.
+#' @param q either the fixed number of active dimensions or the range where the number of active dimensions is chosen with \code{selectQdims}. If \code{NULL} the function \code{\link{selectQdims}} is called.
 #' @param E discretization design for the field.
 #' @param threshold threshold.
 #' @param mu mean vector.
 #' @param Sigma covariance matrix.
-#' @param pn coverage function (if NULL it is computed).
+#' @param pn coverage probability function based on \code{threshold}, \code{mu} and \code{Sigma}. If \code{NULL} it is computed.
 #' @param method integer chosen between \itemize{
 #' \item 0  selects by taking equally spaced indexes in mu;
 #' \item 1  samples from pn;
@@ -31,9 +31,11 @@
 #' \item \code{mean:} the mean vector of length \code{d}.
 #' \item \code{sigma:} the covariance matrix of dimension \code{d}.
 #' }
-#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{pmvnorm} from the package \code{mvtnorm}.
+#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{\link[mvtnorm]{pmvnorm}} from the package \code{mvtnorm}.
 #' @return A vector of integers denoting the chosen active dimensions of the vector mu.
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#'
+#' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'
 #' Chevalier, C. (2013). Fast uncertainty reduction strategies relying on Gaussian process models. PhD thesis, University of Bern.
 #'
@@ -122,13 +124,13 @@ selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0,
 #' @title Iteratively select active dimensions
 #'
 #' @description The function \code{selectQdims} iteratively selects the number of active dimensions and the dimensions themselves for the computation of \eqn{p_q}.
-#' We keep increasing the number of dimensions until \eqn{p_{q}-p_{q-1}} is smaller than the error of the procedure.
+#' The number of dimensions is increased until \eqn{p_{q}-p_{q-1}} is smaller than the error of the procedure.
 #'
 #' @param E discretization design for the field.
 #' @param threshold threshold.
 #' @param mu mean vector.
 #' @param Sigma covariance matrix.
-#' @param pn coverage function (if NULL it is computed).
+#' @param pn coverage probability function based on \code{threshold}, \code{mu} and \code{Sigma}. If \code{NULL} it is computed.
 #' @param method integer chosen between \itemize{
 #' \item 0  selects by taking equally spaced indexes in mu;
 #' \item 1  samples from pn;
@@ -146,7 +148,7 @@ selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0,
 #' \item \code{mean:} the mean vector of length \code{d}.
 #' \item \code{sigma:} the covariance matrix of dimension \code{d}.
 #' }
-#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{pmvnorm} from the package \code{mvtnorm}.
+#' returns a the probability value with attribute "error", the absolute error. Default is the function \code{\link[mvtnorm]{pmvnorm}} from the package \code{mvtnorm}.
 #' @return If \code{reducedReturn=F} returns a list containing
 #' \itemize{
 #'    \item{\code{indQ}: }{the indices of the active dimensions chosen for \eqn{p_q};}

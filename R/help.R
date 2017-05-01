@@ -1,11 +1,15 @@
 #' @title anMC package
-#' @description Efficient estimation of high dimensional orthant probabilities
+#' @description Efficient estimation of high dimensional orthant probabilities. The package main functions are: \itemize{
+#'     \item \code{\link{ProbaMax}}: the main function for high dimensional othant probabilities. Computes \eqn{P(max X > t)}, where \eqn{X} is a Gaussian vector and \eqn{t} is the selected threshold. It implements the \code{GANMC} algorithm and allows for user-defined sampler and core probability estimates.
+#'     \item \code{\link{ProbaMin}}: analogous of \code{ProbaMax} for the problem \eqn{P(min X < t)}, where \eqn{X} is a Gaussian vector and \eqn{t} is the selected threshold.  It implements the \code{GANMC} algorithm and allows for user-defined sampler and core probability estimates.
+#'     \item \code{\link{conservativeEstimate}}: the main function for conservative estimates computation. Requires the mean and covariance of the posterior field at a discretization design.
+#' }
 #' @details Package: anMC \cr
 #' Type: Package \cr
 #' Version: 0.1.0 \cr
-#' Date: 2017-04-21
+#' Date: 2017-05-01
 #'
-#' @author Dario Azzimonti (dario.azzimonti@@gmail.com) . Thanks to David Ginsbourger for the fruitful discussions and his help in testing and improving the package.
+#' @author Dario Azzimonti (dario.azzimonti@@gmail.com) . Thanks to David Ginsbourger for the fruitful discussions and his continuous help in testing and improving the package.
 #' @docType package
 #' @name anMC
 #' @import microbenchmark mvtnorm
@@ -13,6 +17,8 @@
 #' @importFrom stats cov dist lm pnorm quantile var
 #' @useDynLib anMC
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#'
+#' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'
 #' Bolin, D. and Lindgren, F. (2015). Excursion and contour uncertainty regions for latent Gaussian models. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 77(1):85--106.
 #'

@@ -1,6 +1,6 @@
 #' @title MC estimate for the remainder
 #'
-#' @description Standard Monte Carlo estimate for \eqn{P(max X^{-q} >threshold | max X^{q}\le threshold)} or \eqn{P(min X^{-q} <threshold | min X^{q}\ge threshold)} where X is a normal vector. Needed for the bias correction in ProbaMax and ProbaMin.
+#' @description Standard Monte Carlo estimate for \eqn{P(max X^{-q} >threshold | max X^{q}\le threshold)} or \eqn{P(min X^{-q} <threshold | min X^{q}\ge threshold)} where X is a normal vector. It is used for the bias correction in \code{\link{ProbaMax}} and \code{\link{ProbaMin}}.
 # Input:
 #' @param compBdg total computational budget in seconds.
 #' @param problem list defining the problem with mandatory fields: \itemize{
@@ -13,20 +13,22 @@
 #'         }
 #' @param delta total proportion of budget assigned to initial estimate (default 0.1), the actual proportion used might be smaller.
 #' @param type type of excursion: "m", for minimum below threshold or "M", for maximum above threshold.
-#' @param trmvrnorm function to generate truncated multivariate normal samples, it must have the following strict signature trmvrnorm(n,mu,sigma,upper,lower,verb), where \itemize{
-#'        \item \code{n}: number of simulations
-#'        \item \code{mu}: mean vector of the Normal variable
-#'        \item \code{sigma}: covariance matrix
-#'        \item \code{upper}: vector of upper limits for the coordinates
-#'        \item \code{lower}: vector of lower limits for the coordinates
-#'        \item \code{verb}: the level of verbosity 3 basic, 4 extended
+#' @param trmvrnorm function to generate truncated multivariate normal samples, it must have the following signature trmvrnorm(n,mu,sigma,upper,lower,verb), where \itemize{
+#'        \item \code{n}: number of simulations;
+#'        \item \code{mu}: mean vector of the Normal variable of dimension \eqn{d};
+#'        \item \code{sigma}: covariance matrix of dimension \eqn{d x d};
+#'        \item \code{upper}: vector of upper limits of length \code{d};
+#'        \item \code{lower}: vector of lower limits of length \code{d};
+#'        \item \code{verb}: the level of verbosity 3 basic, 4 extended.
 #' }
-#' and it must return a matrix \eqn{d x n} of realizations. If not specified, the rejection sampler \code{trmvrnorm_rej_cpp} is used.
+#' It must return a matrix \eqn{d x n} of realizations. If not specified, the rejection sampler \code{\link{trmvrnorm_rej_cpp}} is used.
 #' @param typeReturn integer: 0 (only the estimate) or 1 (heavy return with variance of the estimate, parameters of the estimator and computational times).
 #' @param verb the level of verbosity, also sets the verbosity of trmvrnorm (to verb-1).
 #' @param params system dependent parameters (if NULL they are estimated).
-#' @return A list containing the estimated probability of excursion, see typeReturn for details.
+#' @return A list containing the estimated probability of excursion, see \code{typeReturn} for details.
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#'
+#' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'
 #' Genz, A. (1992). Numerical computation of multivariate normal probabilities. Journal of Computational and Graphical Statistics, 1(2):141--149.
 #' @export

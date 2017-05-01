@@ -1,7 +1,7 @@
 # Version 0.3: optimized version for the Gaussian case
 # changed minimum m0 and computation of nStar (now cBdg - time actually passed)
 #' @title ANMC estimate for the remainder
-#' @description Asymmetric nested Monte Carlo estimation of \eqn{P(max X^{-q} > threshold | max X^{q} \le threshold)} where X is a normal vector.
+#' @description Asymmetric nested Monte Carlo estimation of \eqn{P(max X^{-q} > threshold | max X^{q} \le threshold)} where X is a normal vector. It is used for the bias correction in \code{\link{ProbaMax}} and \code{\link{ProbaMin}}.
 # Input:
 #' @param compBdg  total computational budget in seconds.
 #' @param problem list defining the problem with mandatory fields \itemize{
@@ -14,15 +14,15 @@
 #'         }
 #' @param delta total proportion of budget assigned to initial estimate (default 0.4), the actual proportion used might be smaller.
 #' @param type type of excursion: "m", for minimum below threshold or "M", for maximum above threshold.
-#' @param trmvrnorm function to generate truncated multivariate normal samples, it must have the following strict signature trmvrnorm(n,mu,sigma,upper,lower,verb), where \itemize{
-#'        \item \code{n}: number of simulations
-#'        \item \code{mu}: mean vector of the Normal variable
-#'        \item \code{sigma}: covariance matrix
-#'        \item \code{upper}: vector of upper limits for the coordinates
-#'        \item \code{lower}: vector of lower limits for the coordinates
-#'        \item \code{verb}: the level of verbosity 3 basic, 4 extended
+#' @param trmvrnorm function to generate truncated multivariate normal samples, it must have the following signature trmvrnorm(n,mu,sigma,upper,lower,verb), where \itemize{
+#'        \item \code{n}: number of simulations;
+#'        \item \code{mu}: mean vector of the Normal variable of dimension \eqn{d};
+#'        \item \code{sigma}: covariance matrix of dimension \eqn{d x d};
+#'        \item \code{upper}: vector of upper limits of length \code{d};
+#'        \item \code{lower}: vector of lower limits of length \code{d};
+#'        \item \code{verb}: the level of verbosity 3 basic, 4 extended.
 #' }
-#' and it must return a matrix \eqn{d x n} of realizations. If not specified, the rejection sampler \code{trmvrnorm_rej_cpp} is used.
+#' It must return a matrix \eqn{d x n} of realizations. If not specified, the rejection sampler \code{\link{trmvrnorm_rej_cpp}} is used.
 #' @param typeReturn integer chosen between \itemize{
 #'          \item 0 a number with only the probability estimation;
 #'          \item 1 light return: a list with the probability estimator, the variance of the estimator, the vectors of conditional quantities used to obtain m^* and the system dependent parameters;
@@ -30,8 +30,10 @@
 #' }
 #' @param verb level of verbosity (0,1 for this function), also sets the verbosity of trmvrnorm (to verb-1).
 #'
-#' @return A list containing the estimated probability of excursion, see typeReturn for details.
+#' @return A list containing the estimated probability of excursion, see \code{typeReturn} for details.
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#'
+#' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'
 #' Dickmann, F. and Schweizer, N. (2014). Faster comparison of stopping times by nested conditional Monte Carlo. arXiv preprint arXiv:1402.0243.
 #'

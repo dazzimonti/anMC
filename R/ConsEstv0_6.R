@@ -50,6 +50,8 @@
 #' points(newdata[CE$set,],rep(-0.1,mDet)[CE$set],col=4,pch="-",cex=2)}
 #' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 #'
+#' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
+#'
 #' Bolin, D. and Lindgren, F. (2015). Excursion and contour uncertainty regions for latent Gaussian models. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 77(1):85--106.
 #' @export
 conservativeEstimate<-function(alpha=0.95,pred,design,threshold,pn=NULL,type=">",verb=1,lightReturn=T,algo="GANMC"){
