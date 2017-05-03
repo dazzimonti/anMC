@@ -74,6 +74,7 @@ with choice of algorithm between ANMC_Gauss and MC_Gauss.
 By default, the computationally expensive sampling parts are computed with the Rcpp functions.
 }
 \examples{
+\dontrun{
 # Compute probability P(X \\in (-\\infty,0]) with X~N(0,Sigma)
 d<-200     # example dimension
 mu<-rep(0,d)    # mean of the normal vector
@@ -87,7 +88,7 @@ proba<-1-pANMC$probability
 # Percentage error
 abs(1-pANMC$probability-1/(d+1))/(1/(d+1))
 
-\dontrun{
+
 # Implement ProbaMax with user defined function for active dimension probability estimate
 if(!requireNamespace("TruncatedNormal", quietly = TRUE)) {
 stop("Package TruncatedNormal needed for this example to work. Please install it.",
