@@ -1,4 +1,12 @@
-# anM 0.1.0
+# anMC 0.2.0
+
+## Changes with respect to anMC 0.1.0 
+
+* The package requires a C++11 compiler.
+
+* The time measurements now are taken with the `chrono` library from C++11.
+
+* Dropped dependency on `microbenchmark` package.
 
 ## Major changes with respect to ConservativeEstimates 0.2.0 
 

@@ -55,34 +55,34 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
     if(verb>1)
       cat("Initialize parameters... ")
     # estimate Cx
-    timeInPart1<-get_nanotime()
+    timeInPart1<-get_chronotime()
     simsX<-trmvrnorm(n = 1,mu = problem$muEq,sigma = problem$sigmaEq, upper = upperTmvn, lower = lowerTmvn, verb=(verb-1))
-    time1SimX<-(get_nanotime()-timeInPart1)*1e-9
+    time1SimX<-(get_chronotime()-timeInPart1)*1e-9
 
     ttX<-rep(0,20)
     ii<-seq(from=1,length.out=20,by=max(1,floor((compBdg*delta*0.4/time1SimX-20)/190)))
     for(i in seq(20)){
-      timeIn<-get_nanotime()
+      timeIn<-get_chronotime()
       temp<-trmvrnorm(n = ii[i],mu = problem$muEq,sigma = problem$sigmaEq,upper = upperTmvn,lower = lowerTmvn,verb=(verb-1))
-      ttX[i]<-(get_nanotime()-timeIn)*1e-9*1.03
+      ttX[i]<-(get_chronotime()-timeIn)*1e-9*1.03
       simsX<-cbind(simsX,temp)
     }
     Cx0<-unname(lm(ttX~ii+0)$coefficients[1])
 
 
     # estimate alpha and beta with lm
-    timeIn<-get_nanotime()
+    timeIn<-get_chronotime()
     muYcondX<- problem$muEmq + problem$wwCondQ%*%(simsX[,1]-problem$muEq)
     simsYcX<- mvrnormArma(n=1,mu = muYcondX,sigma=problem$sigmaCondQChol,chol=1)
-    time1SimYcX<-(get_nanotime()-timeIn)*1e-9
+    time1SimYcX<-(get_chronotime()-timeIn)*1e-9
 
     tt<-rep(0,20)
     ii<-seq(from=1,length.out=20,by=max(1,floor((compBdg*delta*0.5/time1SimYcX-20)/190)))
     for(i in seq(20)){
-      timeIn<-get_nanotime()
+      timeIn<-get_chronotime()
       muYcondX<- problem$muEmq + problem$wwCondQ%*%(simsX[,1]-problem$muEq)
       temp<- mvrnormArma(n=ii[i],mu = muYcondX,sigma=problem$sigmaCondQChol,chol=1)
-      tt[i]<-(get_nanotime()-timeIn)*1e-9*1.03
+      tt[i]<-(get_chronotime()-timeIn)*1e-9*1.03
       simsYcX<-cbind(simsYcX,temp)
     }
     lmmYcX<-lm(tt[2:20]~ii[2:20])
@@ -93,10 +93,15 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
     # beta0<-(quantile(timeBeta$time,probs = 0.99,names = F))*1e-9
 
     # estimate time to evaluate function
-    timeG<-microbenchmark(gg(1))
-    tEvalG<-quantile(timeG$time,probs = 0.99,names = F)*1e-9
+    timeG=rep(NA,154)
+    for(i in seq(154)){
+      iniT<-get_chronotime()
+      gg(1)
+      timeG[i]<-(get_chronotime()-iniT)
+    }
+    tEvalG<-quantile(sort(timeG)[-c(1,2,154,155)],probs = 0.99,names = F)*1e-9
 
-    C_adj<-compBdg*delta -time1SimX - sum(ttX) - sum(tt)-time1SimYcX - sum(timeG$time)*1e-9
+    C_adj<-compBdg*delta -time1SimX - sum(ttX) - sum(tt)-time1SimYcX - sum(timeG)*1e-9
 
     if(verb>1){
       cat("Time passed:",compBdg*delta-C_adj,"\n",
@@ -112,7 +117,7 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
   }else{
     if(verb>1)
       cat("Parameters already initialized. ")
-    timeInPart1<-get_nanotime()
+    timeInPart1<-get_chronotime()
     Cx0<-params$Cx
     alpha<-params$alpha
     beta0<-params$beta
@@ -124,7 +129,7 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
   # derive nStar
   nStar<-round(compBdg/(Cx0+(beta0+tEvalG)))
 
-  timePart1<-(get_nanotime()-timeInPart1)*1e-9
+  timePart1<-(get_chronotime()-timeInPart1)*1e-9
   if(verb>1){
     cat("Computational parameters: \n")
     cat("Cx0: ",Cx0,", beta0: ",beta0, ", nStar: ",nStar, "Time Part 1: ",timePart1,"(compBdg assigned: ",compBdg*delta,")\n")
@@ -166,7 +171,7 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
 
     #    hatG<-hatG+expYcondXfull[j]
     if(j%%100==0){
-      if((get_nanotime()-timeInPart1)*1e-9 >= compBdg*0.96)
+      if((get_chronotime()-timeInPart1)*1e-9 >= compBdg*0.96)
         break
     }
 
@@ -175,7 +180,7 @@ MC_Gauss<-function(compBdg,problem,delta=0.1,type="M",trmvrnorm=trmvrnorm_rej_cp
   #  betaFull<-max(mean(unname(betaFull)),0.001)
   gEval<-gEval[1:nStar]
   estim<-mean(gEval)
-  timeTot<-(get_nanotime()-timeInPart1)*1e-9
+  timeTot<-(get_chronotime()-timeInPart1)*1e-9
 
   if(verb>=1){
     cat("MC computation finished.\n")

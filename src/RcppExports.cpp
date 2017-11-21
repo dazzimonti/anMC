@@ -6,6 +6,16 @@
 
 using namespace Rcpp;
 
+// get_chronotime
+double get_chronotime();
+RcppExport SEXP _anMC_get_chronotime() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(get_chronotime());
+    return rcpp_result_gen;
+END_RCPP
+}
 // mvrnormArma
 arma::mat mvrnormArma(int n, arma::vec mu, arma::mat sigma, int chol);
 RcppExport SEXP _anMC_mvrnormArma(SEXP nSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP cholSEXP) {
@@ -38,6 +48,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_anMC_get_chronotime", (DL_FUNC) &_anMC_get_chronotime, 0},
     {"_anMC_mvrnormArma", (DL_FUNC) &_anMC_mvrnormArma, 4},
     {"_anMC_trmvrnorm_rej_cpp", (DL_FUNC) &_anMC_trmvrnorm_rej_cpp, 6},
     {NULL, NULL, 0}

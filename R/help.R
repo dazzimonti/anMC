@@ -6,13 +6,13 @@
 #' }
 #' @details Package: anMC \cr
 #' Type: Package \cr
-#' Version: 0.1.1 \cr
+#' Version: 0.2.0 \cr
 #' Date: 2017-11-21
 #'
 #' @author Dario Azzimonti (dario.azzimonti@@gmail.com) . Thanks to David Ginsbourger for the fruitful discussions and his continuous help in testing and improving the package.
 #' @docType package
 #' @name anMC
-#' @import microbenchmark mvtnorm
+#' @import mvtnorm
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats cov dist lm pnorm quantile var
 #' @useDynLib anMC

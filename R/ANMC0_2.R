@@ -62,18 +62,18 @@ ANMC_Gauss<-function(compBdg,problem,delta=0.4,type="M",trmvrnorm=trmvrnorm_rej_
   # (possibly) reasonable n0,m0
 
   # estimate Cx
-  timeInPart1<-get_nanotime()
+  timeInPart1<-get_chronotime()
   simsX<-trmvrnorm(n = 1,mu = problem$muEq,sigma = problem$sigmaEq,upper = upperTmvn,lower = lowerTmvn,verb=(verb-1))
-  time1SimX<-(get_nanotime()-timeInPart1)*1e-9
+  time1SimX<-(get_chronotime()-timeInPart1)*1e-9
 
   nTests<-max(2,min(floor(compBdg*delta*0.4/time1SimX),floor((2000+120/2)/(120/2+1))))
 
   ii<-floor(seq(from=1,to=120,by=ceiling(120/nTests)))
   ttX<-rep(0,length(ii))
   for(i in seq(length(ii))){
-    timeIn<-get_nanotime()
+    timeIn<-get_chronotime()
     temp<-trmvrnorm(n = ii[i],mu = problem$muEq,sigma = problem$sigmaEq,upper = upperTmvn,lower = lowerTmvn,verb=(verb-1))
-    ttX[i]<-(get_nanotime()-timeIn)*1e-9*1.03
+    ttX[i]<-(get_chronotime()-timeIn)*1e-9*1.03
     simsX<-cbind(simsX,temp)
   }
   Cx0<-unname(lm(ttX~ii)$coefficients[1])
@@ -81,23 +81,29 @@ ANMC_Gauss<-function(compBdg,problem,delta=0.4,type="M",trmvrnorm=trmvrnorm_rej_
 
 
   # estimate alpha and beta with means
-  timeIn<-get_nanotime()
+  timeIn<-get_chronotime()
   muYcondX<- problem$muEmq + problem$wwCondQ%*%(simsX[,1]-problem$muEq)
-  alpha<-(get_nanotime()-timeIn)*1e-9
+  alpha<-(get_chronotime()-timeIn)*1e-9
   simsYcX<- mvrnormArma(n=1,mu = muYcondX,sigma=problem$sigmaCondQChol,chol=1)
-  time1SimYcX<-(get_nanotime()-timeIn)*1e-9
+  time1SimYcX<-(get_chronotime()-timeIn)*1e-9
 
   nBetas<-ceiling(compBdg*delta*0.1/(time1SimYcX-alpha))
 
-  timeIn<-get_nanotime()
+  timeIn<-get_chronotime()
   simsYcX<- mvrnormArma(n=nBetas,mu = muYcondX,sigma=problem$sigmaCondQChol,chol=1)
-  beta0<-(get_nanotime()-timeIn)*1e-9/nBetas
+  beta0<-(get_chronotime()-timeIn)*1e-9/nBetas
 
   # estimate time to evaluate function
-  timeG<-microbenchmark(gg(1))
-  tEvalG<-quantile(timeG$time,probs = 0.99,names = F)*1e-9
+#  timeG<-microbenchmark(gg(1))
+  timeG=rep(NA,154)
+  for(i in seq(154)){
+    iniT<-get_chronotime()
+    gg(1)
+    timeG[i]<-(get_chronotime()-iniT)
+  }
+  tEvalG<-quantile(sort(timeG)[-c(1,2,154,155)],probs = 0.99,names = F)*1e-9
 
-  C_adj<-compBdg*delta -time1SimX - sum(ttX) -alpha-beta0*nBetas -time1SimYcX - sum(timeG$time)*1e-9
+  C_adj<-compBdg*delta -time1SimX - sum(ttX) -alpha-beta0*nBetas -time1SimYcX - sum(timeG)*1e-9
 
   if(verb>1){
     cat("Time passed:",compBdg*delta-C_adj,"\n",
@@ -168,7 +174,7 @@ ANMC_Gauss<-function(compBdg,problem,delta=0.4,type="M",trmvrnorm=trmvrnorm_rej_
   if(verb>0){
     cat("Obtained mStar:",mStar,", ")
   }
-  timePart1<-(get_nanotime()-timeInPart1)*1e-9
+  timePart1<-(get_chronotime()-timeInPart1)*1e-9
 
   # round it to the nearest integer (if it is less than 2 we use 1)
   epsMstar<-mStar-floor(mStar)
@@ -260,7 +266,7 @@ ANMC_Gauss<-function(compBdg,problem,delta=0.4,type="M",trmvrnorm=trmvrnorm_rej_
   }
   #  betaFull<-max(mean(unname(betaFull)),0.001)
   estim<-mean(expYcondXfull)
-  timeTot<-(get_nanotime()-timeInPart1)*1e-9
+  timeTot<-(get_chronotime()-timeInPart1)*1e-9
 
   if(verb>=1){
     cat("Total time: ",timeTot,"(compBdg: ",compBdg,")\n")
