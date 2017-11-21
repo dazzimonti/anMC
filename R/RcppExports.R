@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @title Measure elapsed time with C++11 chrono library
-#' @description Returns a time indicator that can be used to measure elapsed time with an accurate timer.
+#' @description Returns a time indicator that can be used to accurately measure elapsed time. The C++11 clock used is \code{chrono::high_resolution_clock}.
 #' @return A double with the number of nanoseconds elapsed since a fixed epoch.
 #' @examples
 #' # Measure 1 second sleep
