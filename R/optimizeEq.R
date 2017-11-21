@@ -33,7 +33,7 @@
 #' }
 #' returns a the probability value with attribute "error", the absolute error. Default is the function \code{\link[mvtnorm]{pmvnorm}} from the package \code{mvtnorm}.
 #' @return A vector of integers denoting the chosen active dimensions of the vector mu.
-#' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#' @references Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 #'
 #' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'
@@ -159,7 +159,7 @@ selectActiveDims = function(q=NULL,E,threshold,mu,Sigma,pn=NULL,method=1,verb=0,
 #' }
 #' Otherwise it returns only \code{indQ}.
 #'
-#' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#' @references Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 #'
 #' Chevalier, C. (2013). Fast uncertainty reduction strategies relying on Gaussian process models. PhD thesis, University of Bern.
 #'

@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // mvrnormArma
 arma::mat mvrnormArma(int n, arma::vec mu, arma::mat sigma, int chol);
-RcppExport SEXP anMC_mvrnormArma(SEXP nSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP cholSEXP) {
+RcppExport SEXP _anMC_mvrnormArma(SEXP nSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP cholSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +22,7 @@ END_RCPP
 }
 // trmvrnorm_rej_cpp
 arma::mat trmvrnorm_rej_cpp(int n, arma::vec mu, arma::mat sigma, arma::vec lower, arma::vec upper, int verb);
-RcppExport SEXP anMC_trmvrnorm_rej_cpp(SEXP nSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP verbSEXP) {
+RcppExport SEXP _anMC_trmvrnorm_rej_cpp(SEXP nSEXP, SEXP muSEXP, SEXP sigmaSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP verbSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -35,4 +35,15 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(trmvrnorm_rej_cpp(n, mu, sigma, lower, upper, verb));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_anMC_mvrnormArma", (DL_FUNC) &_anMC_mvrnormArma, 4},
+    {"_anMC_trmvrnorm_rej_cpp", (DL_FUNC) &_anMC_trmvrnorm_rej_cpp, 6},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_anMC(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

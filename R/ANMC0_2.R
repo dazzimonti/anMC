@@ -31,7 +31,7 @@
 #' @param verb level of verbosity (0,1 for this function), also sets the verbosity of trmvrnorm (to verb-1).
 #'
 #' @return A list containing the estimated probability of excursion, see \code{typeReturn} for details.
-#' @references Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+#' @references Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 #'
 #' Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 #'

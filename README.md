@@ -27,6 +27,6 @@ devtools::install_github("dazzimonti/anMC")
 
 ### References
 
-Azzimonti, D. and Ginsbourger, D. (2016). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Preprint at [hal-01289126](https://hal.archives-ouvertes.fr/hal-01289126)
+Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. [DOI: 10.1080/10618600.2017.1360781](https://doi.org/10.1080/10618600.2017.1360781). Preprint at [hal-01289126](https://hal.archives-ouvertes.fr/hal-01289126)
 
-Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. [link](http://www.zb.unibe.ch/download/eldiss/16azzimonti_d.pdf)
+Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. Available at [link](http://www.zb.unibe.ch/download/eldiss/16azzimonti_d.pdf)

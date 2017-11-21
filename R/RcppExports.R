@@ -25,7 +25,7 @@
 #' }
 #' @export
 mvrnormArma <- function(n, mu, sigma, chol) {
-    .Call('anMC_mvrnormArma', PACKAGE = 'anMC', n, mu, sigma, chol)
+    .Call('_anMC_mvrnormArma', PACKAGE = 'anMC', n, mu, sigma, chol)
 }
 
 #' @title Sample from truncated multivariate normal distribution with C++
@@ -60,6 +60,6 @@ mvrnormArma <- function(n, mu, sigma, chol) {
 #' }
 #' @export
 trmvrnorm_rej_cpp <- function(n, mu, sigma, lower, upper, verb) {
-    .Call('anMC_trmvrnorm_rej_cpp', PACKAGE = 'anMC', n, mu, sigma, lower, upper, verb)
+    .Call('_anMC_trmvrnorm_rej_cpp', PACKAGE = 'anMC', n, mu, sigma, lower, upper, verb)
 }
 
