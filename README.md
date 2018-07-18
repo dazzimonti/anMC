@@ -3,7 +3,7 @@
 anMC
 ====
 
-`anMC` is a R package to efficiently compute orthant probabilities of high-dimensional Gaussian vectors. The method is applied to compute conservative estimates of excursion sets of functions under Gaussian random field priors. This is an upgrade on the previously existent package [ConservativeEstimates](https://github.com/dazzimonti/ConservativeEstimates). See the paper [Azzimonti, D. and Ginsbourger D. (2016)](https://hal.archives-ouvertes.fr/hal-01289126) for more details.
+`anMC` is a R package to efficiently compute orthant probabilities of high-dimensional Gaussian vectors. The method is applied to compute conservative estimates of excursion sets of functions under Gaussian random field priors. This is an upgrade on the previously existent package [ConservativeEstimates](https://github.com/dazzimonti/ConservativeEstimates). See the paper [Azzimonti, D. and Ginsbourger D. (2018)](https://hal.archives-ouvertes.fr/hal-01289126) for more details.
 
 ### Features
 
@@ -27,6 +27,6 @@ devtools::install_github("dazzimonti/anMC")
 
 ### References
 
-Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. [DOI: 10.1080/10618600.2017.1360781](https://doi.org/10.1080/10618600.2017.1360781). Preprint at [hal-01289126](https://hal.archives-ouvertes.fr/hal-01289126)
+Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. [DOI: 10.1080/10618600.2017.1360781](https://doi.org/10.1080/10618600.2017.1360781). Preprint at [hal-01289126](https://hal.archives-ouvertes.fr/hal-01289126)
 
-Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. Available at [link](http://www.zb.unibe.ch/download/eldiss/16azzimonti_d.pdf)
+Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. Available at [link](http://biblio.unibe.ch/download/eldiss/16azzimonti_d.pdf)

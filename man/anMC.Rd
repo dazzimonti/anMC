@@ -15,14 +15,14 @@ Efficient estimation of high dimensional orthant probabilities. The package main
 \details{
 Package: anMC \cr
 Type: Package \cr
-Version: 0.2.0 \cr
-Date: 2017-11-21
+Version: 0.2.1 \cr
+Date: 2018-07-18
 }
 \note{
 This work was supported in part by the Swiss National Science Foundation, grant number 146354 and the Hasler Foundation, grant number 16065.
 }
 \references{
-Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics.
+Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. \href{https://doi.org/10.1080/10618600.2017.1360781}{DOI: 10.1080/10618600.2017.1360781}
 
 Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 

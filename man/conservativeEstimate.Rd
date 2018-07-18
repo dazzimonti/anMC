@@ -65,12 +65,15 @@ lines(seq(0,1,,mDet),pred$mean-pred$sd,lty=2,col=1)
 # Compute the coverage function
 pn<-pnorm((threshold-pred$mean)/pred$sd)
 
-\dontrun{CE<-conservativeEstimate(alpha = 0.95,pred = pred,design = as.matrix(newdata),
+\dontrun{
+pred$cov <- pred$cov + 1e-7*diag(nrow = nrow(pred$cov),ncol = ncol(pred$cov))
+CE<-conservativeEstimate(alpha = 0.95,pred = pred,design = as.matrix(newdata),
 threshold = threshold,type = "<",verb=1, pn=pn,algo = "ANMC")
-points(newdata[CE$set,],rep(-0.1,mDet)[CE$set],col=4,pch="-",cex=2)}
+points(newdata[CE$set,],rep(-0.1,mDet)[CE$set],col=4,pch="-",cex=2)
+}
 }
 \references{
-Azzimonti, D. and Ginsbourger, D. (2017). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
 
 Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 

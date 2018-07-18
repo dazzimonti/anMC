@@ -1,4 +1,10 @@
-# anMC 0.2.0
+# anMC 0.2.1
+
+## Changes with respect to anMC 0.2.0
+
+* Fixed an issue in `trmvrnorm_rej_cpp` that could prevent a call to the function `conservativeEstimate` from inside another package. 
+
+* updated references.
 
 ## Changes with respect to anMC 0.1.0 
 
