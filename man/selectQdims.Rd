@@ -5,7 +5,8 @@
 \title{Iteratively select active dimensions}
 \usage{
 selectQdims(E, threshold, mu, Sigma, pn = NULL, method = 1,
-  reducedReturn = T, verb = 0, limits = NULL, pmvnorm_usr = pmvnorm)
+  reducedReturn = T, verb = 0, limits = NULL,
+  pmvnorm_usr = pmvnorm)
 }
 \arguments{
 \item{E}{discretization design for the field.}

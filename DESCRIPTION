@@ -1,9 +1,9 @@
 Package: anMC
 Type: Package
 Title: Compute High Dimensional Orthant Probabilities
-Version: 0.2.1
+Version: 0.2.2
 Author: Dario Azzimonti
-Date: 2018-07-18
+Date: 2019-09-17
 Maintainer: Dario Azzimonti <dario.azzimonti@gmail.com>
 Description: Computationally efficient method to estimate orthant probabilities of high-dimensional Gaussian vectors. Further implements a function to compute conservative estimates of excursion sets under Gaussian random field priors. 
 License: GPL-3
@@ -18,4 +18,4 @@ Suggests:
     TruncatedNormal,
     tmg
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

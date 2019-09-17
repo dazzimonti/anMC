@@ -191,9 +191,11 @@ ProbaMin = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
   if(verb>=1){
     cat("Computed pPrime = ",pPrime,"\n")
   }
-  if((1-pPrime)<attr(pPrime,"error")){
+  if((1-pPrime)<attr(pPrime,"error") || q==nrow(Sigma)){
     if(verb>=2){
-      cat("pPrime close to 1: pPrime=",pPrime,", error=",attr(pPrime,"error"),"\n")
+      cat("pPrime close to 1: pPrime=",pPrime,", error=",attr(pPrime,"error"),
+          "or active dimensions equal to size of problem: q=",q,"length(mu)=",nrow(Sigma),
+          "\n")
     }
     if(lightReturn){
       res<-list(probabilities=list(probability=as.vector(pPrime),pPrime=pPrime,conditional=0),variance=(2/7*attr(pPrime,"error"))^2)
