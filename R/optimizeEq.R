@@ -204,7 +204,11 @@ selectQdims = function(E,threshold,mu,Sigma,pn=NULL,method=1,reducedReturn=T,ver
     # compute k(Eq,Eq)
     KEq<-Sigma[indQ,indQ]
     # Compute p_q
-    temp<-1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq,algorithm = GenzBretz(abseps = 0.01))
+    if("algorithm" %in% names(formals(pmvnorm_usr))){
+      temp<-1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq,algorithm = GenzBretz(abseps = 0.01))
+    }else{
+      temp<-1 - pmvnorm_usr(lower=rep(-Inf,length(indQ)),upper = rep(threshold,length(indQ)),mean = muEq,sigma = KEq)
+    }
 #    pPrime<-c(pPrime,temp)
     err<-attr(temp,"error")
     deltaP<-abs(temp-pPrime)/(temp+1)

@@ -6,8 +6,8 @@
 #' }
 #' @details Package: anMC \cr
 #' Type: Package \cr
-#' Version: 0.2.1 \cr
-#' Date: 2018-07-18
+#' Version: 0.2.2 \cr
+#' Date: 2019-10-23
 #'
 #' @author Dario Azzimonti (dario.azzimonti@@gmail.com) . Thanks to David Ginsbourger for the fruitful discussions and his continuous help in testing and improving the package.
 #' @docType package

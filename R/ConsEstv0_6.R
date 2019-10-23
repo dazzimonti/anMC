@@ -4,7 +4,7 @@
 #'
 #' @param alpha probability of conservative estimate.
 #' @param pred list containing mean vector (pred$mean) and covariance matrix (pred$cov).
-#' @param design the discretization design for the field [to be removed?]
+#' @param design a matrix of size \code{length(pred$mean)}x(input space dimension) that contains the design where \code{pred$mean} was computed.
 #' @param threshold threshold, real number.
 #' @param pn coverage probability function, vector of the same length as pred$mean (if not specified it is computed).
 #' @param type type of excursion: ">" for excursion above threshold or "<" for below.

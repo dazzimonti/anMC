@@ -12,7 +12,7 @@ conservativeEstimate(alpha = 0.95, pred, design, threshold, pn = NULL,
 
 \item{pred}{list containing mean vector (pred$mean) and covariance matrix (pred$cov).}
 
-\item{design}{the discretization design for the field [to be removed?]}
+\item{design}{a matrix of size \code{length(pred$mean)}x(input space dimension) that contains the design where \code{pred$mean} was computed.}
 
 \item{threshold}{threshold, real number.}
 

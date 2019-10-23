@@ -15,8 +15,8 @@ Efficient estimation of high dimensional orthant probabilities. The package main
 \details{
 Package: anMC \cr
 Type: Package \cr
-Version: 0.2.1 \cr
-Date: 2018-07-18
+Version: 0.2.2 \cr
+Date: 2019-10-23
 }
 \note{
 This work was supported in part by the Swiss National Science Foundation, grant number 146354 and the Hasler Foundation, grant number 16065.

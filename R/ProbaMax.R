@@ -203,9 +203,11 @@ ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
           "\n")
     }
     if(lightReturn){
-      res<-list(probabilities=list(probability=as.vector(pPrime),pPrime=pPrime,conditional=0),variance=(2/7*attr(pPrime,"error"))^2)
+      res<-list(probability=as.vector(pPrime), variance=(2/7*attr(pPrime,"error"))^2,q=q)
     }else{
-      res<-list(probabilities=list(probability=as.vector(pPrime),pPrime=pPrime,conditional=0),variance=(2/7*attr(pPrime,"error"))^2,Uncond=NULL,Eq=Eq,indQ=indQ)
+      res<-list(probability=as.vector(pPrime), variance=(2/7*attr(pPrime,"error"))^2,q=q,
+                aux_probabilities=list(probability=as.vector(pPrime),pq=pPrime,Rq=0),
+                Eq=Eq,indQ=indQ,resRq=NULL)
     }
     if(verb>=2){
       cat("Early return. \n")
@@ -250,7 +252,7 @@ ProbaMax = function(cBdg,threshold,mu,Sigma,E=NULL,q=NULL,pn=NULL,lightReturn=T,
   if(lightReturn){
     res<-list(probability=as.vector(proba), variance=vars,q=q)
   }else{
-    res<-list(probability=as.vector(proba), variance=vars, aux_probabilities=list(probability=as.vector(proba),pq=pPrime,Rq=resMCQMC$estim),Eq=Eq,indQ=indQ,resRq=resMCQMC)
+    res<-list(probability=as.vector(proba), variance=vars, q=q, aux_probabilities=list(probability=as.vector(proba),pq=pPrime,Rq=resMCQMC$estim),Eq=Eq,indQ=indQ,resRq=resMCQMC)
   }
 
   return(res)
