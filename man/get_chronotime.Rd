@@ -17,5 +17,5 @@ Returns a time indicator that can be used to accurately measure elapsed time. Th
 initT<-get_chronotime()
 Sys.sleep(1)
 measT<-(get_chronotime()-initT)*1e-9
-cat("1 second passed in ",measT," seconds.\\n")
+cat("1 second passed in ",measT," seconds.\n")
 }

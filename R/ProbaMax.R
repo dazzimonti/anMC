@@ -1,7 +1,6 @@
 ##########
 #' @title Probability of exceedance of maximum of Gaussian vector
 #'
-#'
 #' @description Computes \eqn{P(max X > threshold)}
 #' with choice of algorithm between ANMC_Gauss and MC_Gauss.
 #' By default, the computationally expensive sampling parts are computed with the Rcpp functions.

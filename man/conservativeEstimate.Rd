@@ -4,8 +4,17 @@
 \alias{conservativeEstimate}
 \title{Computationally efficient conservative estimate}
 \usage{
-conservativeEstimate(alpha = 0.95, pred, design, threshold, pn = NULL,
-  type = ">", verb = 1, lightReturn = T, algo = "GANMC")
+conservativeEstimate(
+  alpha = 0.95,
+  pred,
+  design,
+  threshold,
+  pn = NULL,
+  type = ">",
+  verb = 1,
+  lightReturn = T,
+  algo = "GANMC"
+)
 }
 \arguments{
 \item{alpha}{probability of conservative estimate.}

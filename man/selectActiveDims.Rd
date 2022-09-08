@@ -4,8 +4,17 @@
 \alias{selectActiveDims}
 \title{Select active dimensions for small dimensional estimate}
 \usage{
-selectActiveDims(q = NULL, E, threshold, mu, Sigma, pn = NULL,
-  method = 1, verb = 0, pmvnorm_usr = pmvnorm)
+selectActiveDims(
+  q = NULL,
+  E,
+  threshold,
+  mu,
+  Sigma,
+  pn = NULL,
+  method = 1,
+  verb = 0,
+  pmvnorm_usr = pmvnorm
+)
 }
 \arguments{
 \item{q}{either the fixed number of active dimensions or the range where the number of active dimensions is chosen with \code{selectQdims}. If \code{NULL} the function \code{\link{selectQdims}} is called.}

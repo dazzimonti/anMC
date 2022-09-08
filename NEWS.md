@@ -1,4 +1,11 @@
-# anMC 0.2.2
+# anMC 0.2.3
+
+## Changes with respect to anMC 0.2.2
+
+* Updated DESCRIPTION to remove NOTE(s) in CRAN checks.
+
+* **Important:** examples that make use of the package `tmg` now require user to directly install the package from github ([here](https://github.com/cran/tmg)) because the package is no longer on CRAN. 
+
 
 ## Changes with respect to anMC 0.2.1
 

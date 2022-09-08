@@ -4,8 +4,15 @@
 \alias{ANMC_Gauss}
 \title{ANMC estimate for the remainder}
 \usage{
-ANMC_Gauss(compBdg, problem, delta = 0.4, type = "M",
-  trmvrnorm = trmvrnorm_rej_cpp, typeReturn = 0, verb = 0)
+ANMC_Gauss(
+  compBdg,
+  problem,
+  delta = 0.4,
+  type = "M",
+  trmvrnorm = trmvrnorm_rej_cpp,
+  typeReturn = 0,
+  verb = 0
+)
 }
 \arguments{
 \item{compBdg}{total computational budget in seconds.}

@@ -48,4 +48,4 @@ Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random
 [doi-article]: https://doi.org/10.1080/10618600.2017.1360781
 [article-reference]: https://hal.archives-ouvertes.fr/hal-01289126
 [consEst-reference]: https://github.com/dazzimonti/ConservativeEstimates
-[thesis-reference]: http://biblio.unibe.ch/download/eldiss/16azzimonti_d.pdf
+[thesis-reference]: https://biblio.unibe.ch/download/eldiss/16azzimonti_d.pdf

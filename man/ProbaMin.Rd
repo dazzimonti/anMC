@@ -4,9 +4,21 @@
 \alias{ProbaMin}
 \title{Probability of exceedance of minimum of Gaussian vector}
 \usage{
-ProbaMin(cBdg, threshold, mu, Sigma, E = NULL, q = NULL, pn = NULL,
-  lightReturn = T, method = 4, verb = 0, Algo = "ANMC",
-  trmvrnorm = trmvrnorm_rej_cpp, pmvnorm_usr = pmvnorm)
+ProbaMin(
+  cBdg,
+  threshold,
+  mu,
+  Sigma,
+  E = NULL,
+  q = NULL,
+  pn = NULL,
+  lightReturn = T,
+  method = 4,
+  verb = 0,
+  Algo = "ANMC",
+  trmvrnorm = trmvrnorm_rej_cpp,
+  pmvnorm_usr = pmvnorm
+)
 }
 \arguments{
 \item{cBdg}{computational budget.}
@@ -75,7 +87,7 @@ By default, the computationally expensive sampling parts are computed with the R
 }
 \examples{
 \dontrun{
-# Compute probability P(X \\in [0,\\infty]) with X~N(0,Sigma)
+# Compute probability P(X \in [0,\infty]) with X~N(0,Sigma)
 d<-200     # example dimension
 mu<-rep(0,d)    # mean of the normal vector
 # correlation structure (Miwa et al. 2003, Craig 2008, Botev 2016)
@@ -107,7 +119,7 @@ proba<-1-pANMC$probability
 # Percentage error
 abs(1-pANMC$probability-1/(d+1))/(1/(d+1))
 
-# Implement ProbaMax with user defined function for truncated normal sampling
+# Implement ProbaMin with user defined function for truncated normal sampling
 
 if(!requireNamespace("tmg", quietly = TRUE)) {
 stop("Package tmg needed for this example to work. Please install it.",

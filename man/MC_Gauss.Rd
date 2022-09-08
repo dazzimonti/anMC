@@ -4,9 +4,16 @@
 \alias{MC_Gauss}
 \title{MC estimate for the remainder}
 \usage{
-MC_Gauss(compBdg, problem, delta = 0.1, type = "M",
-  trmvrnorm = trmvrnorm_rej_cpp, typeReturn = 0, verb = 0,
-  params = NULL)
+MC_Gauss(
+  compBdg,
+  problem,
+  delta = 0.1,
+  type = "M",
+  trmvrnorm = trmvrnorm_rej_cpp,
+  typeReturn = 0,
+  verb = 0,
+  params = NULL
+)
 }
 \arguments{
 \item{compBdg}{total computational budget in seconds.}

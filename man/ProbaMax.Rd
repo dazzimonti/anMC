@@ -4,9 +4,21 @@
 \alias{ProbaMax}
 \title{Probability of exceedance of maximum of Gaussian vector}
 \usage{
-ProbaMax(cBdg, threshold, mu, Sigma, E = NULL, q = NULL, pn = NULL,
-  lightReturn = T, method = 4, verb = 0, Algo = "ANMC",
-  trmvrnorm = trmvrnorm_rej_cpp, pmvnorm_usr = pmvnorm)
+ProbaMax(
+  cBdg,
+  threshold,
+  mu,
+  Sigma,
+  E = NULL,
+  q = NULL,
+  pn = NULL,
+  lightReturn = T,
+  method = 4,
+  verb = 0,
+  Algo = "ANMC",
+  trmvrnorm = trmvrnorm_rej_cpp,
+  pmvnorm_usr = pmvnorm
+)
 }
 \arguments{
 \item{cBdg}{computational budget.}
@@ -75,7 +87,7 @@ By default, the computationally expensive sampling parts are computed with the R
 }
 \examples{
 \dontrun{
-# Compute probability P(X \\in (-\\infty,0]) with X~N(0,Sigma)
+# Compute probability P(X \in (-\infty,0]) with X~N(0,Sigma)
 d<-200     # example dimension
 mu<-rep(0,d)    # mean of the normal vector
 # correlation structure (Miwa et al. 2003, Craig 2008, Botev 2016)

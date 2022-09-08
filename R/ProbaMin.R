@@ -1,7 +1,6 @@
 ##########
 #' @title Probability of exceedance of minimum of Gaussian vector
 #'
-#'
 #' @description Computes \eqn{P(min X \le threshold)}
 #' with choice of algorithm between ANMC_Gauss and MC_Gauss.
 #' By default, the computationally expensive sampling parts are computed with the Rcpp functions.
@@ -85,7 +84,7 @@
 #' # Percentage error
 #' abs(1-pANMC$probability-1/(d+1))/(1/(d+1))
 #'
-#' # Implement ProbaMax with user defined function for truncated normal sampling
+#' # Implement ProbaMin with user defined function for truncated normal sampling
 #'
 #' if(!requireNamespace("tmg", quietly = TRUE)) {
 #' stop("Package tmg needed for this example to work. Please install it.",
