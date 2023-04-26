@@ -1,4 +1,9 @@
-# anMC 0.2.3
+# anMC 0.2.4
+
+## Changes with respect to anMC 0.2.3
+
+* Updated Makevars to remove NOTE(s) in CRAN checks.
+
 
 ## Changes with respect to anMC 0.2.2
 
