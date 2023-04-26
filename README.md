@@ -3,6 +3,12 @@
 
 # anMC
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/anMC)](https://CRAN.R-project.org/package=anMC)
+<!-- badges: end -->
+
 `anMC` is a R package to efficiently compute orthant probabilities of
 high-dimensional Gaussian vectors. The method is applied to compute
 conservative estimates of excursion sets of functions under Gaussian
