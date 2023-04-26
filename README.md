@@ -16,26 +16,25 @@ See the paper [Azzimonti, D. and Ginsbourger D.
 
 The package main functions are:
 
--   `ProbaMax`: the main function for high dimensional othant
-    probabilities. Computes *P(max X \> t)*, where *X* is a Gaussian
-    vector and *t* is the selected threshold. The function computes the
-    probability with the decomposition explained
-    [here](https://hal.archives-ouvertes.fr/hal-01289126). It implements
-    both the `GMC` and `GANMC` algorithms. It allows user-defined
-    functions for the core probability estimate (defaults to `pmvnorm`
-    of the package `mvtnorm`) and the truncated normal sampler (defaults
-    to `trmvrnorm_rej_cpp`) required in the method.
+- `ProbaMax`: the main function for high dimensional othant
+  probabilities. Computes *P(max X \> t)*, where *X* is a Gaussian
+  vector and *t* is the selected threshold. The function computes the
+  probability with the decomposition explained
+  [here](https://hal.archives-ouvertes.fr/hal-01289126). It implements
+  both the `GMC` and `GANMC` algorithms. It allows user-defined
+  functions for the core probability estimate (defaults to `pmvnorm` of
+  the package `mvtnorm`) and the truncated normal sampler (defaults to
+  `trmvrnorm_rej_cpp`) required in the method.
 
--   `ProbaMin`: analogous of `ProbaMax` but used to compute *P(min X \<
-    t)*, where *X* is a Gaussian vector and *t* is the selected
-    threshold. This function computes the probability with the
-    decomposition explained
-    [here](https://hal.archives-ouvertes.fr/hal-01289126). It implements
-    both the `GMC` and `GANMC` algorithms.
+- `ProbaMin`: analogous of `ProbaMax` but used to compute *P(min X \<
+  t)*, where *X* is a Gaussian vector and *t* is the selected threshold.
+  This function computes the probability with the decomposition
+  explained [here](https://hal.archives-ouvertes.fr/hal-01289126). It
+  implements both the `GMC` and `GANMC` algorithms.
 
--   `conservativeEstimate` : the main function for conservative
-    estimates computation. Requires the mean and covariance of the
-    posterior field at a discretization design.
+- `conservativeEstimate` : the main function for conservative estimates
+  computation. Requires the mean and covariance of the posterior field
+  at a discretization design.
 
 ### Installation
 
