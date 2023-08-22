@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/anMC)](https://CRAN.R-project.org/package=anMC)
+[![R-CMD-check](https://github.com/dazzimonti/anMC/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dazzimonti/anMC/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `anMC` is a R package to efficiently compute orthant probabilities of high-dimensional Gaussian vectors. The method is applied to compute conservative estimates of excursion sets of functions under Gaussian random field priors. This is an upgrade on the previously existent package [ConservativeEstimates][consEst-reference]. See the paper [Azzimonti, D. and Ginsbourger D. (2018)][article-reference] for more details.
@@ -50,6 +51,6 @@ Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of hi
 Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern. Available at [link][thesis-reference]
 
 [doi-article]: https://doi.org/10.1080/10618600.2017.1360781
-[article-reference]: https://hal.archives-ouvertes.fr/hal-01289126
+[article-reference]: https://hal.science/hal-01289126
 [consEst-reference]: https://github.com/dazzimonti/ConservativeEstimates
 [thesis-reference]: https://biblio.unibe.ch/download/eldiss/16azzimonti_d.pdf

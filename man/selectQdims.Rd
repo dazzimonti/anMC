@@ -67,7 +67,7 @@ The function \code{selectQdims} iteratively selects the number of active dimensi
 The number of dimensions is increased until \eqn{p_{q}-p_{q-1}} is smaller than the error of the procedure.
 }
 \references{
-Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. Preprint at \href{https://hal.science/hal-01289126}{hal-01289126}
 
 Chevalier, C. (2013). Fast uncertainty reduction strategies relying on Gaussian process models. PhD thesis, University of Bern.
 

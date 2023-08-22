@@ -16,7 +16,7 @@ random field priors. This is an upgrade on the previously existent
 package
 [ConservativeEstimates](https://github.com/dazzimonti/ConservativeEstimates).
 See the paper [Azzimonti, D. and Ginsbourger D.
-(2018)](https://hal.archives-ouvertes.fr/hal-01289126) for more details.
+(2018)](https://hal.science/hal-01289126) for more details.
 
 ### Features
 
@@ -26,7 +26,7 @@ The package main functions are:
   probabilities. Computes *P(max X \> t)*, where *X* is a Gaussian
   vector and *t* is the selected threshold. The function computes the
   probability with the decomposition explained
-  [here](https://hal.archives-ouvertes.fr/hal-01289126). It implements
+  [here](https://hal.science/hal-01289126). It implements
   both the `GMC` and `GANMC` algorithms. It allows user-defined
   functions for the core probability estimate (defaults to `pmvnorm` of
   the package `mvtnorm`) and the truncated normal sampler (defaults to
@@ -35,7 +35,7 @@ The package main functions are:
 - `ProbaMin`: analogous of `ProbaMax` but used to compute *P(min X \<
   t)*, where *X* is a Gaussian vector and *t* is the selected threshold.
   This function computes the probability with the decomposition
-  explained [here](https://hal.archives-ouvertes.fr/hal-01289126). It
+  explained [here](https://hal.science/hal-01289126). It
   implements both the `GMC` and `GANMC` algorithms.
 
 - `conservativeEstimate` : the main function for conservative estimates
@@ -61,7 +61,7 @@ to set estimation. Journal of Computational and Graphical Statistics,
 27(2), 255-267. [DOI:
 10.1080/10618600.2017.1360781](https://doi.org/10.1080/10618600.2017.1360781).
 Preprint at
-[hal-01289126](https://hal.archives-ouvertes.fr/hal-01289126)
+[hal-01289126](https://hal.science/hal-01289126)
 
 Azzimonti, D. (2016). Contributions to Bayesian set estimation relying
 on random field priors. PhD thesis, University of Bern. Available at

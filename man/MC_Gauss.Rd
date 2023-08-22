@@ -54,7 +54,7 @@ A list containing the estimated probability of excursion, see \code{typeReturn} 
 Standard Monte Carlo estimate for \eqn{P(max X^{-q} >threshold | max X^{q}\le threshold)} or \eqn{P(min X^{-q} <threshold | min X^{q}\ge threshold)} where X is a normal vector. It is used for the bias correction in \code{\link{ProbaMax}} and \code{\link{ProbaMin}}.
 }
 \references{
-Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. Preprint at \href{https://hal.archives-ouvertes.fr/hal-01289126}{hal-01289126}
+Azzimonti, D. and Ginsbourger, D. (2018). Estimating orthant probabilities of high dimensional Gaussian vectors with an application to set estimation. Journal of Computational and Graphical Statistics, 27(2), 255-267. Preprint at \href{https://hal.science/hal-01289126}{hal-01289126}
 
 Azzimonti, D. (2016). Contributions to Bayesian set estimation relying on random field priors. PhD thesis, University of Bern.
 
