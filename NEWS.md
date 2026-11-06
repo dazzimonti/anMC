@@ -1,4 +1,12 @@
+# anMC 0.2.6
+
+* Fixed Rd markup in the documentation of `ProbaMax`, `ProbaMin` and `selectQdims` that caused a "Lost braces" NOTE in CRAN checks.
+
+* Regenerated documentation with roxygen2 8.1.0.
+
 # anMC 0.2.5
+
+* Updated package overview help file to comply with roxygen2 7.0.0 and removed old links.
 
 # anMC 0.2.4
 

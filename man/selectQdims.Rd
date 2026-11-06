@@ -54,11 +54,11 @@ returns a the probability value with attribute "error", the absolute error. Defa
 \value{
 If \code{reducedReturn=F} returns a list containing
 \itemize{
-   \item{\code{indQ}: }{the indices of the active dimensions chosen for \eqn{p_q};}
-   \item{\code{pq}: }{the biased estimator \eqn{p_q} with attribute \code{error}, the estimated absolute error;}
-   \item{\code{Eq}: }{the points of the design \eqn{E} selected for \eqn{p_q};}
-   \item{\code{muEq}: }{the subvector of \code{mu} selected for \eqn{p_q};}
-   \item{\code{KEq}: }{the submatrix of \code{Sigma} composed by the indexes selected for \eqn{p_q}.}
+   \item \code{indQ}: the indices of the active dimensions chosen for \eqn{p_q};
+   \item \code{pq}: the biased estimator \eqn{p_q} with attribute \code{error}, the estimated absolute error;
+   \item \code{Eq}: the points of the design \eqn{E} selected for \eqn{p_q};
+   \item \code{muEq}: the subvector of \code{mu} selected for \eqn{p_q};
+   \item \code{KEq}: the submatrix of \code{Sigma} composed by the indexes selected for \eqn{p_q}.
 }
 Otherwise it returns only \code{indQ}.
 }

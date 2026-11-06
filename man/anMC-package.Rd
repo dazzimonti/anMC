@@ -47,5 +47,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Dario Azzimonti \email{dario.azzimonti@gmail.com} (\href{https://orcid.org/0000-0001-5080-3061}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Dario Azzimonti \email{dario.azzimonti@gmail.com} (\href{https://orcid.org/0000-0001-5080-3061}{ORCID}) [copyright holder]
+}
+
 }
 \keyword{internal}

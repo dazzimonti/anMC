@@ -9,7 +9,7 @@
 #' @param threshold threshold.
 #' @param mu mean vector.
 #' @param Sigma covariance matrix.
-#' @param E discretization design for the field. If \code{NULL}, a simplex-lattice design {n,n} is used, with \code{n=length(mu)}. In this case the choice of method=4,5 are not advised.
+#' @param E discretization design for the field. If \code{NULL}, a simplex-lattice design (n,n) is used, with \code{n=length(mu)}. In this case the choice of method=4,5 are not advised.
 #' @param q number of active dimensions, it can be either \itemize{
 #'          \item an integer: in this case the optimal \code{q} active dimension are chosen;
 #'          \item a numeric vector of length 2: this is the range where to search for the best number of active dimensions;
@@ -39,16 +39,16 @@
 #' returns a the probability value with attribute "error", the absolute error. Default is the function \code{\link[mvtnorm]{pmvnorm}} from the package \code{mvtnorm}.
 #' @return A list containing
 #' \itemize{
-#'    \item{\code{probability}: }{The probability estimate}
-#'    \item{\code{variance}: }{the variance of the probability estimate}
-#'    \item{\code{q}:}{the number of selected active dimensions}
+#'    \item \code{probability}: The probability estimate
+#'    \item \code{variance}: the variance of the probability estimate
+#'    \item \code{q}: the number of selected active dimensions
 #' }
 #' If \code{lightReturn=F} then the list also contains:
 #' \itemize{
-#'    \item{\code{aux_probabilities}: }{ a list with the probability estimates: \code{probability} the actual probability, \code{pq} the biased estimator \eqn{p_q}, \code{Rq} the conditional probability \eqn{R_q}}
-#'    \item{\code{Eq}: }{the points of the design \eqn{E} selected for \eqn{p_q}}
-#'    \item{\code{indQ}: }{the indices of the active dimensions chosen for \eqn{p_q}}
-#'    \item{\code{resRq}: }{The list returned by the MC method used for \eqn{R_q}}
+#'    \item \code{aux_probabilities}: a list with the probability estimates: \code{probability} the actual probability, \code{pq} the biased estimator \eqn{p_q}, \code{Rq} the conditional probability \eqn{R_q}
+#'    \item \code{Eq}: the points of the design \eqn{E} selected for \eqn{p_q}
+#'    \item \code{indQ}: the indices of the active dimensions chosen for \eqn{p_q}
+#'    \item \code{resRq}: The list returned by the MC method used for \eqn{R_q}
 #' }
 #'
 #' @examples

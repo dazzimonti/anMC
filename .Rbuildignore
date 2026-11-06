@@ -1,5 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-README.Rmd
-TODO.md
+^README\.Rmd$
+^TODO\.md$
 ^\.github$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^\.claude$
+^\.positai$
